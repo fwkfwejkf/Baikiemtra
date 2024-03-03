@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu Management</title>
+</head>
+<body>
+    <div id="content">
+        <h1>Nhà Hàng</h1>
+        <input type="text" id="userInput" placeholder="Hãy nhập lệnh (C, R, U, D)" />
+        <input type="button" value="Submit" onclick="handleUserInput()">
+    </div>
+
+    <script>
+     
+
+        function handleUserInput() {
+            const userInput = document.getElementById("userInput").value.trim().toUpperCase();
+            let response = "";
+
+            switch (userInput) {
+                case "R":
+                    displayMenu();
+                    break;
+                case "C":
+                    const newDish = prompt("Enter a dish to add:");
+                    addDish(newDish);
+                    response = `Dish added successfully: ${newDish}`;
+                    break;
+                case "U":
+                    const oldDish = prompt("Enter a dish to update:");
+                    const updatedDish = prompt("Enter the updated dish name:");
+                    updateDish(oldDish, updatedDish);
+                    response = `Dish updated successfully: ${oldDish} -> ${updatedDish}`;
+                    break;
+                case "D":
+                    const dishToDelete = prompt("Enter a dish to delete:");
+                    deleteDish(dishToDelete);
+                    response = `Dish deleted successfully: ${dishToDelete}`;
+                    break;
+                default:
+                    response = "Invalid input. Please enter C, R, U, or D.";
+            }
+            alert(response);
+        }
+    </script>
+</body>
+</html>
