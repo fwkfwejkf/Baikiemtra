@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #4e699a; /* Change background color to black */
+  }
+
+  #login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .form-container {
+    background-color: #629068; /* Change form container background color to dark gray */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3); /* Change box-shadow color to white */
+    padding: 40px;
+    width: 300px;
+  }
+
+  .form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .form-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff; /* Change form header text color to white */
+  }
+
+  .form-header button {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    color: #007bff;
+    cursor: pointer;
+  }
+
+  .form-header button:hover {
+    text-decoration: underline;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #fff; /* Change label text color to white */
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444; /* Change input border color to dark gray */
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #5c2a2a; /* Change input text color to white */
+  }
+
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #0069d9;
+  }
+    </style>
+</head>
+<body>
+    <div id="login-page">
+        <div id="form-container">
+            <div id="form-header">
+                <h2 id="title">Login</h2>
+                <button id="signup-btn">Sign Up</button>
+            </div>
+
+            <form id="login-form">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username"><br>
+
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password"><br>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <form id="signup-form" style="display:none;">
+                <label for="signup-username">Username:</label><br>
+                <input type="text" id="signup-username" name="username"><br>
+
+                <label for="signup-password">Password:</label><br>
+                <input type="password" id="signup-password" name="password"><br>
+
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById("login-form");
+        const signupForm = document.getElementById("signup-form");
+        const title = document.getElementById("title");
+        const signupBtn = document.getElementById("signup-btn");
+
+        signupBtn.addEventListener("click", () => {
+            loginForm.style.display = "none";
+            signupForm.style.display = "block";
+            title.innerText = "Sign Up";
+        });
+
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+
+            if (users.some((user) => user.username === username && user.password === password)) {
+                alert("Login successful");
+            } else {
+                alert("Invalid username or password");
+            }
+        });
+
+        signupForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const username = document.getElementById("signup-username").value;
+            const password = document.getElementById("signup-password").value;
+
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+
+            if (!users.some((user) => user.username === username)) {
+                users.push({ username, password });
+                localStorage.setItem("users", JSON.stringify(users));
+                alert("Sign up successful");
+                loginForm.style.display = "block";
+                signupForm.style.display = "none";
+                title.innerText = "Login";
+            } else {
+                alert("Username already exists");
+            }
+        });
+    </script>
+</body>
+</html>
