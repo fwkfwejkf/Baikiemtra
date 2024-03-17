@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +9,18 @@
 <!-- CSS link -->
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+<style>
+    /* Custom CSS styles */
+    .weather-box {
+        padding: 10px;
+        background-color: #f0f0f0;
+        text-align: center;
+    }
+
+    .weather-info {
+        margin-bottom: 10px;
+    }
+</style>
 <body>
     <div class="text-center">
         <div class="logo">
@@ -17,6 +28,8 @@
             <p>The Kathmandu Post</p>
         </div>
     </div>
+    
+    
     <div class="container">
         <nav>
             <ul>
@@ -28,6 +41,10 @@
                 <li><a href="#">Comedy</a></li>
             </ul>
         </nav>
+        <div class="weather-box">
+            <div class="weather-info" id="weather-info"></div> 
+            <i class="weather-icon fa fa-question" aria-hidden="true"></i>
+        </div>
         <section class="main container">
             <div class="row">
                 <div class="col">
@@ -49,10 +66,51 @@
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias omnis voluptates, laudantium repudiandae corrupti incidunt itaque vero eum culpa. Dolore sapiente nesciunt neque ut autem necessitatibus officia facilis doloremque at.</p>
                     <img src="" alt="">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eos eveniet optio officiis illo sed ipsum earum doloremque vero, dolorem placeat. Delectus provident voluptatibus illum modi itaque omnis? Blanditiis, quos!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eos eveniet optio officiis illo sed ipsum earum doloremque vero, dolorem placeat. Delectus provident voluptatibus illum modi itaque omnis? Blanditiis, quos!</p>
-                </div>
-            </div>
-        </section>
-    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eos eveniet optio officiis illo sed ipsum earum doloremque vero, dolorem placeat. Delectus provident voluptatibus illum mod```html
+<script>
+// Weather API URL (replace "YOUR_API_KEY" with your actual API key)
+const url = 'https://api.openweathermap.org/data/2.5/weather?q=Ho%20Chi%20Minh%20City&appid=1189e6bcefde5f8744184071b9eb1431';
+
+// Function to fetch weather data and display it
+function displayWeather() {
+  const weatherBox = document.getElementById('weather-box');
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const temperatureKelvin = data.main.temp;
+      const temperatureCelsius = Math.round(temperatureKelvin - 273.15);
+      const description = data.weather[0].description;
+      const weatherInfo = `Temperature: ${temperatureCelsius}°C, Description: ${description}`;
+
+      // Create a new div element for weather information
+      const weatherInfoDiv = document.createElement('div');
+      weatherInfoDiv.textContent = weatherInfo;
+
+      // Create a new i element for the weather icon
+      const weatherIcon = document.createElement('i');
+      weatherIcon.classList.add('fa');
+
+      // Add appropriate icons based on the weather description
+      if (description.includes('clouds')) {
+        weatherIcon.classList.add('fa-cloud');
+      } else if (description.includes('rain')) {
+        weatherIcon.classList.add('fa-tint');
+      } else if (description.includes('clear')) {
+        weatherIcon.classList.add('fa-sun');
+      } else {
+        weatherIcon.classList.add('fa-question');
+      }
+
+      // Append the weather information and icon to the weather box
+      weatherBox.appendChild(weatherInfoDiv);
+      weatherBox.appendChild(weatherIcon);
+    })
+    .catch(error => console.log(error));
+}
+
+// Call the displayWeather function to fetch and display weather information
+displayWeather();
+</script>
 </body>
 </html>
