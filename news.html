@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Posts</title>
+    <style>
+       body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #007bb5;
+            color: white;
+            padding: 1rem;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 1em 0;
+        }
+        header nav ul {
+            display: flex;
+            flex-wrap: nowrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        header nav li {
+            margin: 0 0.5rem;
+        }
+        header nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            border-radius: 3px;
+        }
+        header nav a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        header .ok {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+        }
+        header nav {
+            display: flex;
+            list-style: none;
+            margin: 1rem 0 0;
+        }
+        header nav ul li {
+            margin-right: 1rem;
+        }
+        header nav a {
+            color: white;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 30px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .post {
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            padding: 20px;
+            position: relative;
+        }
+        .post img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .post h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .post p {
+            margin-bottom: 20px;
+        }
+        .read-more {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .read-more:hover {
+            background-color: #0056b3;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>To bao</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="page1.html">Home</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="bus.html">Business</a></li>
+                <li><a href="tech.html">Technology</a></li>
+                <li><a href="tv.html">TV</a></li>
+                <li><a href="com.html">Comedy</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+    <div class="post">
+        <h2>Loạt nước lên án vụ Ecuador đột kích đại sứ quán Mexico</h2>
+        <img src="https://i1-vnexpress.vnecdn.net/2024/04/07/Ecuador-7925-1712429062.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=ITFU-d2DzB27iTknHvrFuA" alt="Post 1 Image">
+        <p>
+            Các nước Mỹ Latin phản đối cảnh sát vũ trang Ecuador đột kích vào đại sứ quán Mexico để bắt cựu phó tổng thống đang tị nạn tại đây.
+        </p>
+        <button class="read-more" id="openModal1">Read More</button>
+    </div>
+
+        <div class="post">
+            <h2>Hơn 330 tỷ đồng của 8 khách hàng 'bốc hơi' khỏi MSB như thế nào</h2>
+            <img src="https://i1-vnexpress.vnecdn.net/2024/04/06/434371233-442415151694044-4989-2000-4847-1712381638.jpg?w=220&h=132&q=100&dpr=1&fit=crop&s=d8KpqktS9y82hXRDyfXQjA" alt="Post 2 Image">
+            <p>
+                Bà Nguyễn Thị Lân và 7 người gửi 338 tỷ đồng vào tài khoản ở MSB, theo hướng dẫn của cán bộ ngân hàng Bùi Thị Hoài Anh, lấy lãi 6%/tháng nhưng sau đó mất sạch.
+            </p>
+            <button class="read-more" id="openModal2">Read More</button>
+        </div>
+
+    <div class="post">
+        <h2>Thủ tướng Lý Cường: 'Bắc Kinh muốn Mỹ - Trung là đối tác, không phải đối thủ'
+        </h2>
+        <img src="https://i1-vnexpress.vnecdn.net/2024/04/07/5563187178137268319a-My-Trung-6483-1712465558.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=G-vaR1MQCbxxy-vsP6JqmA" alt="Post 3 Image">
+        <p>
+            Thủ tướng Trung Quốc Lý Cường bày tỏ mong muốn tăng cường hợp tác với Mỹ, khi tiếp Bộ trưởng Tài chính Janet Yellen tại Bắc Kinh.
+        </p>
+        <button class="read-more" id="openModal3">Read More</button>
+    </div>
+</div>
+    <!-- Modal 1 -->
+    <div id="myModal1" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal1">&times;</span>
+            <h2>Loạt nước lên án vụ Ecuador đột kích đại sứ quán Mexico
+            </h2>
+            <img src="https://i1-vnexpress.vnecdn.net/2024/04/07/Ecuador-7925-1712429062.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=ITFU-d2DzB27iTknHvrFuA" alt="Post 1 Image">
+            <p>
+                Các nước Mỹ Latin phản đối cảnh sát vũ trang Ecuador đột kích vào đại sứ quán Mexico để bắt cựu phó tổng thống đang tị nạn tại đây.
+
+Bộ Ngoại giao Brazil ngày 6/4 chỉ trích chính phủ Ecuador đã "vi phạm trắng trợn" các quy chuẩn quốc tế về bảo vệ cơ quan đại diện ngoại giao, sau khi cho cảnh sát vũ trang trèo tường vào đại sứ quán Mexico ở thủ đô Quito để bắt cựu phó tổng thống Jorge Glas trong đêm.
+
+Brazil bày tỏ ủng hộ Mexico, nhấn mạnh hành động của chính phủ Ecuador "cần chịu sự lên án quyết liệt bất chấp mọi lời biện minh".
+
+Ông Glas từng bị Ecuador kết án tù vì tội tham nhũng liên quan tập đoàn xây dựng Odebrecht của Brazil. Sau khi ra tù hồi tháng 11/2023, cựu phó tổng thống Ecuador tiếp tục bị phát lệnh bắt với cáo buộc biển thủ khoản tiền dành để khắc phục hậu quả trận động đất năm 2015. Ông né tránh lệnh bắt bằng cách vào đại sứ quán Mexico ở Quito để xin tị nạn từ tháng 12 năm ngoái.
+
+Yêu cầu tị nạn của ông được Mexico chấp thuận hôm 5/4, bất chấp các yêu cầu hợp tác dẫn độ từ Ecuador. Giới chức sở tại phản ứng bằng cách triển khai binh sĩ, cảnh sát bao vây đại sứ quán Mexico. Lực lượng cảnh sát đặc nhiệm vũ trang sau đó trèo tường mở cổng, đưa xe vào áp giải ông Jorge Glas về nhà giam.
+            </p>
+            <form class="response-form">
+                <label for="response">Your Response:</label>
+                <textarea id="response" name="response" rows="2" cols="30"></textarea>
+                <button class="submit-response" onclick="submitResponse()">Submit Response</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal2">&times;</span>
+            <h2>Hơn 330 tỷ đồng của 8 khách hàng 'bốc hơi' khỏi MSB như thế nào
+            </h2>
+            <img src="https://i1-vnexpress.vnecdn.net/2024/04/06/434371233-442415151694044-4989-2000-4847-1712381638.jpg?w=220&h=132&q=100&dpr=1&fit=crop&s=d8KpqktS9y82hXRDyfXQjA" alt="Post 2 Image">
+            <p>
+                Bà Nguyễn Thị Lân và 7 người gửi 338 tỷ đồng vào tài khoản ở MSB, theo hướng dẫn của cán bộ ngân hàng Bùi Thị Hoài Anh, lấy lãi 6%/tháng nhưng sau đó mất sạch.<br>
+
+Giám đốc chi nhánh Thanh Xuân - Ngân hàng Thương mại cổ phần Hàng Hải Việt Nam (MSB) Bùi Thị Hoài Anh đã bị Cơ quan An ninh điều tra Công an Hà Nội tạm giam với cáo buộc "có hành vi gian dối" để chiếm đoạt 338 tỷ đồng của 8 khách hàng, với cùng thủ đoạn.<br>
+
+Nhà chức trách thông báo chưa phát hiện thêm đồng phạm và đang áp dụng biện pháp thu hồi tài sản, trả cho bị hại.
+            </p>
+            <form class="response-form">
+                <label for="response">Your Response:</label>
+                <textarea id="response" name="response" rows="2" cols="30"></textarea>
+                <button class="submit-response" onclick="submitResponse()">Submit Response</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div id="myModal3" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal3">&times;</span>
+            <h2>Thủ tướng Lý Cường: 'Bắc Kinh muốn Mỹ - Trung là đối tác, không phải đối thủ'
+                </h2>
+            <img src="https://i1-vnexpress.vnecdn.net/2024/04/07/5563187178137268319a-My-Trung-6483-1712465558.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=G-vaR1MQCbxxy-vsP6JqmA" alt="Post 3 Image">
+            <p>
+                Thủ tướng Trung Quốc Lý Cường bày tỏ mong muốn tăng cường hợp tác với Mỹ, khi tiếp Bộ trưởng Tài chính Janet Yellen tại Bắc Kinh.
+
+Trong cuộc gặp ngày 7/4, Bộ trưởng Tài chính Mỹ Janet Yellen nhận định quan hệ song phương "chỉ có thể tiến triển bằng liên lạc trực tiếp và cởi mở". "Mặc dù còn nhiều việc phải làm, tôi tin rằng trong năm qua chúng ta đã đưa quan hệ song phương lên nền tảng ổn định hơn", bà Yellen nói.
+
+Ông Lý khẳng định "Trung Quốc chân thành hy vọng hai nước sẽ là đối tác, không phải đối thủ". Theo ông, người dùng mạng Internet tại Trung Quốc theo dõi chặt chẽ chuyến đi của bà Yellen sau khi Bộ trưởng Tài chính Mỹ tới Quảng Đông, điều này cho thấy "kỳ vọng và hy vọng vào việc tiếp tục cải thiện quan hệ Mỹ - Trung".
+            </p>
+            <form class="response-form">
+                <label for="response">Your Response:</label>
+                <textarea id="response" name="response" rows="2" cols="30"></textarea>
+                <button class="submit-response" onclick="submitResponse()">Submit Response</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var modal1 = document.getElementById("myModal1");
+        var modal2 = document.getElementById("myModal2");
+        var modal3 = document.getElementById("myModal3");
+
+        var btn1 = document.getElementById("openModal1");
+        var btn2 = document.getElementById("openModal2");
+        var btn3 = document.getElementById("openModal3");
+
+        var span1 = document.getElementById("closeModal1");
+        var span2 = document.getElementById("closeModal2");
+        var span3 = document.getElementById("closeModal3");
+
+        btn1.onclick = function() {
+            modal1.style.display = "block";
+        }
+        btn2.onclick = function() {
+            modal2.style.display = "block";
+        }
+        btn3.onclick = function() {
+            modal3.style.display = "block";
+        }
+
+        span1.onclick = function() {
+            modal1.style.display = "none";
+        }
+        span2.onclick = function() {
+            modal2.style.display = "none";
+        }
+        span3.onclick = function() {
+            modal3.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal1) {
+                modal1.style.display = "none";
+            }
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+            if (event.target == modal3) {
+                modal3.style.display = "none";
+            }
+        }
+        function submitResponse() {
+    const response = document.getElementById("response").value;
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+        alert(`Response from ${loggedInUser}: ${response}`);
+        // You can perform further actions here, like saving the response in the database.
+    } else {
+        alert("You need to be logged in to submit a response.");
+        // You can redirect the user to the login page or show a login form here.
+    }
+}
+    </script>
+</body>
+</html>

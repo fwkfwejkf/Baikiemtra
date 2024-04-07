@@ -1,116 +1,335 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Newspaper Titles</title>
-<!-- Font Awesome CDN link -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-hav12-SFTiT1X6kk+qiTfevl/7LibUOeIWt1tIrbyDn9I2a10GHOWIVIG2MFoay505gObmWazOSBQPiFUCNNEAPAB/Swen" crossorigin="anonymous" />
-<!-- CSS link -->
-<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-F3wW6/Ne88cbinokXK/0uDnOU8MU21iZbYK/27XcY/RnShbY+YM0GcwN6xg67D8U" crossorigin="anonymous" />
 </head>
-<style>
-    /* Custom CSS styles */
-    .weather-box {
-        padding: 10px;
-        background-color: #f0f0f0;
-        text-align: center;
-    }
-
-    .weather-info {
-        margin-bottom: 10px;
-    }
-</style>
 <body>
-    <div class="text-center">
-        <div class="logo">
-            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-            <p>The Kathmandu Post</p>
+<style>
+    .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #f1f1f1;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+/* Header */
+    header {
+        background-color: #007bb5;
+        color: white;
+        padding: 1rem;
+    }
+    header nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em 0;
+}
+
+header nav ul {
+    display: flex;
+    flex-wrap: nowrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav li {
+    margin: 0 0.5rem;
+}
+
+header nav a {
+    color: #333;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 3px;
+}
+
+header nav a:hover {
+    background-color: #333;
+    color: #fff;
+}
+    
+    header .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    header .h1 {
+        margin: 0;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    header nav {
+        display: flex;
+        list-style: none;
+        margin: 1rem 0 0;
+    }
+    
+    header nav ul li {
+        margin-right: 1rem;
+    }
+    
+    header nav a {
+        color: white;
+    }
+    /* Weather */
+    .weather {
+    background-color: #f2f2f2;
+    padding: 2rem 0;
+    text-align: center;
+}
+.weather h2 {
+    margin-bottom: 1rem;
+}
+.weather .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+}
+.weather #weather-icon {
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    margin-bottom: 10px;
+    background-color: #8f8c8c;
+}
+        .magazine-posts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.post {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.post h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.post p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.read-more {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    position: relative;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+    </style>
+    <header>
+        <div class="container">
+            <h1>To bao</h1>
         </div>
-    </div>
-    
-    
-    <div class="container">
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Business</a></li>
+                <li><a href="page1.html">Home</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="bus.html">Business</a></li>
                 <li><a href="#">Technology</a></li>
                 <li><a href="#">TV</a></li>
                 <li><a href="#">Comedy</a></li>
             </ul>
         </nav>
-        <div class="weather-box">
-            <div class="weather-info" id="weather-info"></div> 
-            <i class="weather-icon fa fa-question" aria-hidden="true"></i>
+    </header>
+
+    <section class="weather">
+        <div class="container">
+            <h2>Weather in Ho Chi Minh City</h2>
+            <div id="weather-box">
+                <div id="weather-icon"></div>
+                <div id="weather-info"></div>
+            </div>
         </div>
-        <section class="main container">
-            <div class="row">
-                <div class="col">
-                    <h3>This is a Headline</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias omnis voluptates, laudantium repudiandae corrupti incidunt itaque vero eum culpa. Dolore sapiente nesciunt neque ut autem necessitatibus officia facilis doloremque at.</p>
-                    <img src="" alt="">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eos eveniet optio officiis illo sed ipsum earum doloremque vero, dolorem placeat. Delectus provident voluptatibus illum modi itaque omnis? Blanditiis, quos!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eos eveniet optio officiis illo sed ipsum earum doloremque vero, dolorem placeat. Delectus provident voluptatibus illum modi itaque omnis? Blanditiis, quos!</p>
-                </div>
-                <div class="col">
-                    <h3>This is a Headline</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias omnis voluptates, laudantium repudiandae corrupti incidunt itaque vero eum culpa. Dolore sapiente nesciunt neque ut autem necessitatibus officia facilis doloremque at.</p>
-                    <img src="" alt="">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eos eveniet optio officiis illo sed ipsum earum doloremque vero, dolorem placeat. Delectus provident voluptatibus illum modi itaque omnis? Blanditiis, quos!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eos eveniet optio officiis illo sed ipsum earum doloremque vero, dolorem placeat. Delectus provident voluptatibus illum modi itaque omnis? Blanditiis, quos!</p>
-                </div>
-                <div class="col">
-                    <h3>Recent photo</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias omnis voluptates, laudantium repudiandae corrupti incidunt itaque vero eum culpa. Dolore sapiente nesciunt neque ut autem necessitatibus officia facilis doloremque at.</p>
-                    <img src="" alt="">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eos eveniet optio officiis illo sed ipsum earum doloremque vero, dolorem placeat. Delectus provident voluptatibus illum modi itaque omnis? Blanditiis, quos!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam eos eveniet optio officiis illo sed ipsum earum doloremque vero, dolorem placeat. Delectus provident voluptatibus illum mod```html
-<script>
-// Weather API URL (replace "YOUR_API_KEY" with your actual API key)
-const url = 'https://api.openweathermap.org/data/2.5/weather?q=Ho%20Chi%20Minh%20City&appid=1189e6bcefde5f8744184071b9eb1431';
+    </section>
+    <div class="magazine-posts">
+        <!-- Repeat the following structure for each magazine post -->
+        <div class="post">
+            <h2>Amazing Nature Photography Around the World</h2>
+            <img src="https://assets.teenvogue.com/photos/651c46b40ed68775c26f5254/16:9/w_2560%2Cc_limit/GettyImages-1569807199.jpg" alt="Post 1 Image">
+            <p>
+                Explore the most stunning nature photography from professional
+                photographers around the globe.
+            </p>
+            <button class="read-more">Read More</button>
+        </div>
+        <div class="post">
+            <h2>The Future of Renewable Energy Technologies</h2>
+            <img src="https://ioflood.com/blog/wp-content/uploads/2023/10/java_logo_dice_random.jpg" alt="Post 2 Image">
+            <p>
+                Discover the latest advancements in renewable energy technologies
+                and their impact on the environment.
+            </p>
+            <button class="read-more">Read More</button>
+        </div>
+        <div class="post">
+            <h2>The Hidden Lifestyle of Microorganisms</h2>
+            <img src="https://storage.googleapis.com/pod_public/1300/88149.jpg" alt="Post 3 Image">
+            <p>
+                Learn about the fascinating world of microorganisms and their
+                role in our ecosystem.
+            </p>
+            <button class="read-more">Read More</button>
+        </div>
+    </div>
 
-// Function to fetch weather data and display it
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Full Post Title</h2>
+            <img src="https://assets.teenvogue.com/photos/651c46b40ed68775c26f5254/16:9/w_2560%2Cc_limit/GettyImages-1569807199.jpg" alt="Full Post Image">
+            <p>
+                Full post content goes here.
+            </p>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2022 My Website. All rights reserved.</p>
+            <script>
+                  var modal = document.getElementById("myModal");
+        var readMoreButtons = document.getElementsByClassName("read-more");
+        var span = document.getElementsByClassName("close")[0];
+
+        for (var i = 0; i < readMoreButtons.length; i++) {
+            readMoreButtons[i].onclick = function() {
+                modal.style.display = "block";
+            }
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        const apiKey = '1189e6bcefde5f8744184071b9eb1431';
+const cityName = 'Ho Chi Minh City';
+const weatherBox = document.getElementById('weather-box');
+const weatherIcon = document.getElementById('weather-icon');
+const weatherInfo = document.getElementById('weather-info');
 function displayWeather() {
-  const weatherBox = document.getElementById('weather-box');
-
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      const temperatureKelvin = data.main.temp;
-      const temperatureCelsius = Math.round(temperatureKelvin - 273.15);
-      const description = data.weather[0].description;
-      const weatherInfo = `Temperature: ${temperatureCelsius}°C, Description: ${description}`;
-
-      // Create a new div element for weather information
-      const weatherInfoDiv = document.createElement('div');
-      weatherInfoDiv.textContent = weatherInfo;
-
-      // Create a new i element for the weather icon
-      const weatherIcon = document.createElement('i');
-      weatherIcon.classList.add('fa');
-
-      // Add appropriate icons based on the weather description
-      if (description.includes('clouds')) {
-        weatherIcon.classList.add('fa-cloud');
-      } else if (description.includes('rain')) {
-        weatherIcon.classList.add('fa-tint');
-      } else if (description.includes('clear')) {
-        weatherIcon.classList.add('fa-sun');
-      } else {
-        weatherIcon.classList.add('fa-question');
-      }
-
-      // Append the weather information and icon to the weather box
-      weatherBox.appendChild(weatherInfoDiv);
-      weatherBox.appendChild(weatherIcon);
-    })
-    .catch(error => console.log(error));
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`)
+        .then(response => response.json())
+        .then(data => {
+            const temperature = data.main.temp;
+            const description = data.weather[0].description;
+            const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+            weatherInfo.textContent = `${temperature}°C, ${description}`;
+            weatherIcon.style.backgroundImage = `url(${iconUrl})`;
+        })
+        .catch(error => console.error('Error fetching weather data:', error));
 }
-
-// Call the displayWeather function to fetch and display weather information
 displayWeather();
-</script>
-</body>
+            </script>
+    </body>
 </html>

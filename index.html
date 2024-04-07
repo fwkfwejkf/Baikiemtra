@@ -87,79 +87,96 @@
     </style>
 </head>
 <body>
-    <div id="login-page">
-        <div id="form-container">
-            <div id="form-header">
-                <h2 id="title">Login</h2>
-                <button id="signup-btn">Sign Up</button>
-            </div>
-
-            <form id="login-form">
-                <label for="username">Username:</label><br>
-                <input type="text" id="username" name="username"><br>
-
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password"><br>
-
-                <button type="submit">Login</button>
-            </form>
-
-            <form id="signup-form" style="display:none;">
-                <label for="signup-username">Username:</label><br>
-                <input type="text" id="signup-username" name="username"><br>
-
-                <label for="signup-password">Password:</label><br>
-                <input type="password" id="signup-password" name="password"><br>
-
-                <button type="submit">Sign Up</button>
-            </form>
+  <div id="login-page">
+    <div id="form-container">
+        <div id="form-header">
+            <h2 id="title">Login</h2>
+            <button id="signup-btn">Sign Up</button>
         </div>
+
+        <form id="login-form">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <form id="signup-form" style="display:none;">
+            <label for="signup-username">Username:</label><br>
+            <input type="text" id="signup-username" name="username"><br>
+
+            <label for="signup-password">Password:</label><br>
+            <input type="password" id="signup-password" name="password"><br>
+
+            <button type="submit">Sign Up</button>
+        </form>
     </div>
+</div>
+
 
     <script>
-        const loginForm = document.getElementById("login-form");
-        const signupForm = document.getElementById("signup-form");
-        const title = document.getElementById("title");
-        const signupBtn = document.getElementById("signup-btn");
+     document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("login-form");
+  const signupForm = document.getElementById("signup-form");
+  const title = document.getElementById("title");
+  const signupBtn = document.getElementById("signup-btn");
 
-        signupBtn.addEventListener("click", () => {
-            loginForm.style.display = "none";
-            signupForm.style.display = "block";
-            title.innerText = "Sign Up";
-        });
+  const userNameElement = document.getElementById("user-name");
+  const signOutBtn = document.getElementById("sign-out-btn");
 
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
+  signupBtn.addEventListener("click", () => {
+    loginForm.style.display = "none";
+    signupForm.style.display = "block";
+    title.innerText = "Sign Up";
+  });
 
-            const users = JSON.parse(localStorage.getItem("users")) || [];
+  function handleLogin() {
+    window.location.href = "page1.html";
+  }
 
-            if (users.some((user) => user.username === username && user.password === password)) {
-                alert("Login successful");
-            } else {
-                alert("Invalid username or password");
-            }
-        });
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-        signupForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const username = document.getElementById("signup-username").value;
-            const password = document.getElementById("signup-password").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-            const users = JSON.parse(localStorage.getItem("users")) || [];
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
-            if (!users.some((user) => user.username === username)) {
-                users.push({ username, password });
-                localStorage.setItem("users", JSON.stringify(users));
-                alert("Sign up successful");
-                loginForm.style.display = "block";
-                signupForm.style.display = "none";
-                title.innerText = "Login";
-            } else {
-                alert("Username already exists");
-            }
-        });
+    if (users.some((user) => user.username === username && user.password === password)) {
+      localStorage.setItem("loggedInUser", username);
+      handleLogin();
+    } else {
+      alert("Invalid username or password");
+    }
+  });
+
+  signupForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById("signup-username").value;
+    const password = document.getElementById("signup-password").value;
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (!users.some((user) => user.username === username)) {
+      users.push({ username, password });
+      localStorage.setItem("users", JSON.stringify(users));
+      alert("Sign up successful");
+
+      document.getElementById("signup-username").value = "";
+      document.getElementById("signup-password").value = "";
+
+      loginForm.style.display = "block";
+      signupForm.style.display = "none";
+      title.innerText = "Login";
+    } else {
+      alert("Username already exists");
+    }
+  });
+});
     </script>
 </body>
 </html>

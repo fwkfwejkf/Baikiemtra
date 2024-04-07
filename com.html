@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Posts</title>
+    <style>
+       body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #007bb5;
+            color: white;
+            padding: 1rem;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 1em 0;
+        }
+        header nav ul {
+            display: flex;
+            flex-wrap: nowrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        header nav li {
+            margin: 0 0.5rem;
+        }
+        header nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            border-radius: 3px;
+        }
+        header nav a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        header .ok {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+        }
+        header nav {
+            display: flex;
+            list-style: none;
+            margin: 1rem 0 0;
+        }
+        header nav ul li {
+            margin-right: 1rem;
+        }
+        header nav a {
+            color: white;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 30px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .post {
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            padding: 20px;
+            position: relative;
+        }
+        .post img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .post h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .post p {
+            margin-bottom: 20px;
+        }
+        .read-more {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .read-more:hover {
+            background-color: #0056b3;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>To bao</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="page1.html">Home</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="bus.html">Business</a></li>
+                <li><a href="tech.html">Technology</a></li>
+                <li><a href="tv.html">TV</a></li>
+                <li><a href="com.html">Comedy</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+    <div class="post">
+        <h2>Đám cưới không theo kiểu truyền thống
+        </h2>
+        <img src="https://i1-giadinh.vnecdn.net/2024/04/06/431174015-960774448735295-1742-4644-7395-1712379768.png?w=300&h=180&q=100&dpr=1&fit=crop&s=EfzBiqJo43qc5DzyUM5pWw" alt="Post 1 Image">
+        <p>
+            Xu Lizhen, 29 tuổi, từng làm phù dâu cho một người bạn và dự hai đám khác nên biết đám cưới truyền thống phức tạp, tốn kém thế nào.
+        </p>
+        <button class="read-more" id="openModal1">Read More</button>
+    </div>
+
+        <div class="post">
+            <h2>Bốn gợi ý quà độc lạ 'Made in Singapore'
+            </h2>
+            <img src="https://i1-giadinh.vnecdn.net/2024/03/30/dgdfs-1711782399-3631-1711782452.png?w=300&h=180&q=100&dpr=1&fit=crop&s=950ILegWfUReBtH7w_dXlQ" alt="Post 2 Image">
+            <p>
+                Ngoài thú nhồi bông Merlion, móc khóa... du khách có thể làm mới danh sách quà tặng bằng những sản phẩm local brand thiết kế mới mẻ đậm tính di sản và ứng dụng cao.
+            </p>
+            <button class="read-more" id="openModal2">Read More</button>
+        </div>
+
+    <div class="post">
+        <h2>Nhiều người phát hiện đứng tên sim số lạ
+
+        </h2>
+        <img src="https://i1-sohoa.vnecdn.net/2024/03/19/sim-2604-1710803036.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=c_bZeG-Te-Vgbjs1Ym-l-Q" alt="Post 3 Image">
+        <p>
+            Gọi điện tới nhà mạng để nhờ hỗ trợ dịch vụ, Ngọc Nam bất ngờ khi được thông báo đứng tên ba thuê bao, dù anh chỉ dùng một số
+        </p>
+        <button class="read-more" id="openModal3">Read More</button>
+    </div>
+</div>
+    <!-- Modal 1 -->
+    <div id="myModal1" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal1">&times;</span>
+            <h2>Đám cưới không theo kiểu truyền thống
+            </h2>
+            <img src="https://i1-giadinh.vnecdn.net/2024/04/06/431174015-960774448735295-1742-4644-7395-1712379768.png?w=300&h=180&q=100&dpr=1&fit=crop&s=EfzBiqJo43qc5DzyUM5pWw" alt="Post 1 Image">
+            <p>
+                Xu Lizhen, 29 tuổi, từng làm phù dâu cho một người bạn và dự hai đám khác nên biết đám cưới truyền thống phức tạp, tốn kém thế nào.
+
+Vì vậy, khi kết hôn với Hou Naibin, 34 tuổi, vào năm ngoái, cô tổ chức buổi lễ đơn giản và thoải mái tại quê chồng thuộc Dinh Khẩu, tỉnh Liêu Ninh.
+
+Họ không thuê trang điểm chuyên nghiệp hay trang phục cầu kỳ. Thay vào đó, Hou mặc bộ đồ công sở, Xu mặc váy đỏ do địa điểm tổ chức đám cưới cung cấp. Trong lễ cưới, đôi trẻ chia sẻ đoạn video ghi lại hành trình họ đến nhiều thành phố khác nhau trên khắp Trung Quốc trong 6 tháng từ khi đăng ký kết hôn.
+
+Trong đó đặc biệt ấn tượng là loạt ảnh có tiêu đề "Elope to Mars" (trốn đến sao Hỏa) tại công viên địa chất núi lửa Wulanhada ở khu tự trị Nội Mông, Hou hóa trang thành phi hành gia còn Xu mặc váy cưới.
+            </p>
+            <form class="response-form">
+                <label for="response">Your Response:</label>
+                <textarea id="response" name="response" rows="2" cols="30"></textarea>
+                <button class="submit-response" onclick="submitResponse()">Submit Response</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal2">&times;</span>
+            <h2>Bốn gợi ý quà độc lạ 'Made in Singapore'
+            </h2>
+            <img src="https://i1-giadinh.vnecdn.net/2024/03/30/dgdfs-1711782399-3631-1711782452.png?w=300&h=180&q=100&dpr=1&fit=crop&s=950ILegWfUReBtH7w_dXlQ" alt="Post 2 Image">
+            <p>
+                Ngoài thú nhồi bông Merlion, móc khóa... du khách có thể làm mới danh sách quà tặng bằng những sản phẩm local brand thiết kế mới mẻ đậm tính di sản và ứng dụng cao.
+
+Nếu đã quá quen thuộc với những món quà lưu niệm truyền thống như móc khóa, thú nhồi bông Merlion... du khách có thể tham khảo những sản phẩm từ các thương hiệu nội địa. Đảo quốc nổi tiếng với các sản phẩm "Made in Singapore" do chính người dân thiết kế, sáng tạo.
+
+Họ "thổi hồn" cho các vật dụng hàng ngày bằng những câu chuyện, chất liệu và họa tiết độc đáo mà vẫn đảm bảo tính ứng dụng cao. Từ những túi thân thiện môi trường, đến vòng tay thủ công hay thảm yoga lấy cảm hứng từ văn hóa di sản... các gợi ý dưới đây sẽ không chỉ là món quà ý nghĩa mà còn đại diện cho vẻ đẹp và văn hóa của đảo quốc.
+            </p>
+            <form class="response-form">
+                <label for="response">Your Response:</label>
+                <textarea id="response" name="response" rows="2" cols="30"></textarea>
+                <button class="submit-response" onclick="submitResponse()">Submit Response</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div id="myModal3" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal3">&times;</span>
+            <h2>Thủ tướng Lý Cường: 'Bắc Kinh muốn Mỹ - Trung là đối tác, không phải đối thủ'
+                </h2>
+            <img src="https://i1-vnexpress.vnecdn.net/2024/04/07/5563187178137268319a-My-Trung-6483-1712465558.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=G-vaR1MQCbxxy-vsP6JqmA" alt="Post 3 Image">
+            <p>
+                Thủ tướng Trung Quốc Lý Cường bày tỏ mong muốn tăng cường hợp tác với Mỹ, khi tiếp Bộ trưởng Tài chính Janet Yellen tại Bắc Kinh.
+
+Trong cuộc gặp ngày 7/4, Bộ trưởng Tài chính Mỹ Janet Yellen nhận định quan hệ song phương "chỉ có thể tiến triển bằng liên lạc trực tiếp và cởi mở". "Mặc dù còn nhiều việc phải làm, tôi tin rằng trong năm qua chúng ta đã đưa quan hệ song phương lên nền tảng ổn định hơn", bà Yellen nói.
+
+Ông Lý khẳng định "Trung Quốc chân thành hy vọng hai nước sẽ là đối tác, không phải đối thủ". Theo ông, người dùng mạng Internet tại Trung Quốc theo dõi chặt chẽ chuyến đi của bà Yellen sau khi Bộ trưởng Tài chính Mỹ tới Quảng Đông, điều này cho thấy "kỳ vọng và hy vọng vào việc tiếp tục cải thiện quan hệ Mỹ - Trung".
+            </p>
+            <form class="response-form">
+                <label for="response">Your Response:</label>
+                <textarea id="response" name="response" rows="2" cols="30"></textarea>
+                <button class="submit-response" onclick="submitResponse()">Submit Response</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var modal1 = document.getElementById("myModal1");
+        var modal2 = document.getElementById("myModal2");
+        var modal3 = document.getElementById("myModal3");
+
+        var btn1 = document.getElementById("openModal1");
+        var btn2 = document.getElementById("openModal2");
+        var btn3 = document.getElementById("openModal3");
+
+        var span1 = document.getElementById("closeModal1");
+        var span2 = document.getElementById("closeModal2");
+        var span3 = document.getElementById("closeModal3");
+
+        btn1.onclick = function() {
+            modal1.style.display = "block";
+        }
+        btn2.onclick = function() {
+            modal2.style.display = "block";
+        }
+        btn3.onclick = function() {
+            modal3.style.display = "block";
+        }
+
+        span1.onclick = function() {
+            modal1.style.display = "none";
+        }
+        span2.onclick = function() {
+            modal2.style.display = "none";
+        }
+        span3.onclick = function() {
+            modal3.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal1) {
+                modal1.style.display = "none";
+            }
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+            if (event.target == modal3) {
+                modal3.style.display = "none";
+            }
+        }
+        function submitResponse() {
+    const response = document.getElementById("response").value;
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+        alert(`Response from ${loggedInUser}: ${response}`);
+        // You can perform further actions here, like saving the response in the database.
+    } else {
+        alert("You need to be logged in to submit a response.");
+        // You can redirect the user to the login page or show a login form here.
+    }
+}
+    </script>
+</body>
+</html>

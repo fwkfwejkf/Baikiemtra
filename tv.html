@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Posts</title>
+    <style>
+       body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #007bb5;
+            color: white;
+            padding: 1rem;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 1em 0;
+        }
+        header nav ul {
+            display: flex;
+            flex-wrap: nowrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        header nav li {
+            margin: 0 0.5rem;
+        }
+        header nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            border-radius: 3px;
+        }
+        header nav a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        header .ok {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+        }
+        header nav {
+            display: flex;
+            list-style: none;
+            margin: 1rem 0 0;
+        }
+        header nav ul li {
+            margin-right: 1rem;
+        }
+        header nav a {
+            color: white;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 30px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .post {
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            padding: 20px;
+            position: relative;
+        }
+        .post img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .post h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .post p {
+            margin-bottom: 20px;
+        }
+        .read-more {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .read-more:hover {
+            background-color: #0056b3;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>To bao</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="page1.html">Home</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="bus.html">Business</a></li>
+                <li><a href="tech.html">Technology</a></li>
+                <li><a href="tv.html">TV</a></li>
+                <li><a href="com.html">Comedy</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="post">
+            <h2>Post about Drama TV Show</h2>
+            <img src="https://media.glamour.com/photos/5fa2e9c958f1ae62b4f610e8/master/w_2560%2Cc_limit/tv-2.jpg" alt="Drama TV Show Image">
+            <p>
+                Dive into the captivating world of drama with this thrilling TV show that will keep you on the edge of your seat with its gripping storylines and compelling characters.
+            </p>
+            <button class="read-more" id="openModal1">Read More</button>
+        </div>
+    
+        <div class="post">
+            <h2>Post about Comedy TV Show</h2>
+            <img src="https://media.newyorker.com/photos/61afc08e30ad3736ddaa3e10/master/w_2560%2Cc_limit/best_tv_st_felix.png" alt="Comedy TV Show Image">
+            <p>
+                Laugh your heart out with this hilarious comedy TV show that promises non-stop entertainment and laughter for viewers of all ages.
+            </p>
+            <button class="read-more" id="openModal2">Read More</button>
+        </div>
+    
+        <div class="post">
+            <h2>Post about Sci-Fi TV Show</h2>
+            <img src="https://cdn.vox-cdn.com/thumbor/uTD2tCZl1OfZAMa2gVBGNcgHCgI=/0x0:3000x2000/1200x800/filters:focal(1260x760:1740x1240)/cdn.vox-cdn.com/uploads/chorus_image/image/60674505/lindbergh_tv_week_numbers.0.jpg" alt="Sci-Fi TV Show Image">
+            <p>
+                Immerse yourself in the futuristic world of science fiction with this mind-bending TV show that explores the possibilities of technology and the unknown.
+            </p>
+            <button class="read-more" id="openModal3">Read More</button>
+        </div>
+    </div>
+    
+    <!-- Modal 1 -->
+    <div id="myModal1" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal1">&times;</span>
+            <h2>Post about Drama TV Show</h2>
+            <img src="https://media.glamour.com/photos/5fa2e9c958f1ae62b4f610e8/master/w_2560%2Cc_limit/tv-2.jpg" alt="Drama TV Show Image">
+            <p>
+                Dive into the captivating world of drama with this thrilling TV show that will keep you on the edge of your seat with its gripping storylines and compelling characters.
+                Experience an emotional rollercoaster with every episode that will leave you wanting more.
+            </p>
+            <form class="response-form">
+                <label for="response">Your Response:</label>
+                <textarea id="response" name="response" rows="2" cols="30"></textarea>
+                <button class="submit-response" onclick="submitResponse()">Submit Response</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal 2 -->
+    <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal2">&times;</span>
+            <h2>Post about Comedy TV Show</h2>
+            <img src="https://media.newyorker.com/photos/61afc08e30ad3736ddaa3e10/master/w_2560%2Cc_limit/best_tv_st_felix.png" alt="Comedy TV Show Image">
+            <p>
+                Laugh your heart out with this hilarious comedy TV show that promises non-stop entertainment and laughter for viewers of all ages.
+                Get ready for a comedy extravaganza that will have you in stitches from beginning to end.
+            </p>
+            <form class="response-form">
+                <label for="response">Your Response:</label>
+                <textarea id="response" name="response" rows="2" cols="30"></textarea>
+                <button class="submit-response" onclick="submitResponse()">Submit Response</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal 3 -->
+    <div id="myModal3" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal3">&times;</span>
+            <h2>Post about Sci-Fi TV Show</h2>
+            <img src="https://cdn.vox-cdn.com/thumbor/uTD2tCZl1OfZAMa2gVBGNcgHCgI=/0x0:3000x2000/1200x800/filters:focal(1260x760:1740x1240)/cdn.vox-cdn.com/uploads/chorus_image/image/60674505/lindbergh_tv_week_numbers.0.jpg" alt="Sci-Fi TV Show Image">
+            <p>
+                Immerse yourself in the futuristic world of science fiction with this mind-bending TV show that explores the possibilities of technology and the unknown.
+                Embark on a thrilling journey through space and time as you unravel mysteries and encounter otherworldly beings.
+            </p>
+            <form class="response-form">
+                <label for="response">Your Response:</label>
+                <textarea id="response" name="response" rows="2" cols="30"></textarea>
+                <button class="submit-response" onclick="submitResponse()">Submit Response</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        var modal1 = document.getElementById("myModal1");
+        var modal2 = document.getElementById("myModal2");
+        var modal3 = document.getElementById("myModal3");
+
+        var btn1 = document.getElementById("openModal1");
+        var btn2 = document.getElementById("openModal2");
+        var btn3 = document.getElementById("openModal3");
+
+        var span1 = document.getElementById("closeModal1");
+        var span2 = document.getElementById("closeModal2");
+        var span3 = document.getElementById("closeModal3");
+
+        btn1.onclick = function() {
+            modal1.style.display = "block";
+        }
+        btn2.onclick = function() {
+            modal2.style.display = "block";
+        }
+        btn3.onclick = function() {
+            modal3.style.display = "block";
+        }
+
+        span1.onclick = function() {
+            modal1.style.display = "none";
+        }
+        span2.onclick = function() {
+            modal2.style.display = "none";
+        }
+        span3.onclick = function() {
+            modal3.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal1) {
+                modal1.style.display = "none";
+            }
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+            if (event.target == modal3) {
+                modal3.style.display = "none";
+            }
+        }
+        function submitResponse() {
+    const response = document.getElementById("response").value;
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+        alert(`Response from ${loggedInUser}: ${response}`);
+        // You can perform further actions here, like saving the response in the database.
+    } else {
+        alert("You need to be logged in to submit a response.");
+        // You can redirect the user to the login page or show a login form here.
+    }
+}
+    </script>
+</body>
+</html>
